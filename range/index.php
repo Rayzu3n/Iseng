@@ -148,12 +148,12 @@ $hints = [
     'sqli' => [
         'Notice that the username and password values are placed directly inside single quotes in the SQL string.',
         'The database parses the combined string as SQL syntax. A comment marker can make the rest of a statement irrelevant.',
-        'In the username field, try: ' OR 1=1 -- x . Put any filler in the password field. This only selects a fictional row in this isolated demo database.'
+        "In the username field, try: ' OR 1=1 -- x . Put any filler in the password field. This only selects a fictional row in this isolated demo database."
     ],
     'xss' => [
         'The submitted comment is stored as data. The important question is how it is rendered back into the page.',
         'Find the output line in the comments loop. Is the comment escaped with htmlspecialchars(), or interpreted as HTML?',
-        'For a harmless local proof, submit this comment: <svg onload=alert('Stored XSS')>. It should only display a browser dialog in this local lab.'
+        "For a harmless local proof, submit this comment: <svg onload=alert(1)>. It should only display a browser dialog in this local lab."
     ],
     'idor' => [
         'The demo session is Nadia Student, user ID 2, and her own profile record is ID 2.',
