@@ -1,0 +1,25 @@
+services:
+  injection-lab:
+    build: .
+    container_name: securelab-injection-range
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - lab_data:/var/lib/lab
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/apache2
+      - /var/lock/apache2
+      - /var/log/apache2
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - isolated-lab
+
+networks:
+  isolated-lab:
+    internal: true
+
+volumes:
+  lab_data:
