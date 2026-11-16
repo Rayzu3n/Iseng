@@ -51,7 +51,7 @@ const content = document.getElementById("lesson-content");
 let current = 0;
 let hintIndex = {};
 let completed = JSON.parse(localStorage.getItem("securelab-completed") || "[]");
-let revealed = {};
+let revealed = Object.fromEntries(completed.map(id => [id, true]));
 const esc = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 function progress() {
   document.getElementById("progress-label").textContent = completed.length + " / " + lessons.length + " COMPLETED";
