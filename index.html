@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local-first web security learning lab with guided lessons and hints.">
+  <meta name="theme-color" content="#10151d">
+  <title>SecureLab | Web Security Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="SecureLab home"><span class="brand-mark">S</span><span>secure<span class="brand-light">lab</span></span></a>
+    <div class="top-meta"><span class="status-dot"></span> LOCAL LEARNING ENVIRONMENT <span class="top-divider"></span><span id="progress-label">0 / 6 COMPLETED</span></div>
+    <button class="icon-button" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">◐</button>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="eyebrow">YOUR CURRICULUM</div>
+      <div class="course-heading"><span class="course-icon">⌘</span><div><strong>Web Security 101</strong><small>FOUNDATION TRACK</small></div></div>
+      <div class="progress-track"><span id="progress-bar"></span></div>
+      <nav id="lesson-nav" aria-label="Lessons"></nav>
+      <div class="sidebar-note"><span class="note-icon">✳</span><div><strong>Learn by reasoning</strong><p>Hints are there to guide you, not to spoil the answer. Take your time.</p></div></div>
+      <div class="sidebar-footer">SECURELAB <span>v1.0.0</span></div>
+    </aside>
+    <section class="main-panel">
+      <div class="breadcrumb"><span>CURRICULUM</span><span>/</span><span id="crumb-current">INTRODUCTION</span></div>
+      <div id="lesson-content" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="mobile-footer">Built for curious minds. Practice safely. <span>✳</span></footer>
+</body>
+</html>
