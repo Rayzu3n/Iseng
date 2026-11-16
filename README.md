@@ -1,46 +1,36 @@
 # SecureLab
 
-An interactive, local-first web security learning lab. Learn to recognize common web vulnerabilities, reason about their impact, and apply safer fixes.
+A web security learning project with two parts:
 
-## Topics
+## 1. Guided curriculum
 
-- Authentication vs authorization
-- IDOR / broken object-level authorization
-- Cross-site scripting (XSS)
-- SQL injection
-- Cross-site request forgery (CSRF)
-- Security headers
+A lightweight static site with six lessons, progressive hints, quizzes, and secure-code explanations.
 
-## Run locally
-
-This is a static learning app. No backend, database, or package installation is required.
+Open `index.html` directly, or run:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open http://localhost:8000.
+Then visit http://localhost:8000.
 
-## Learning flow
+## 2. Hands-on Injection Range
 
-1. Read the fictional scenario.
-2. Inspect the intentionally flawed code sample.
-3. Reveal hints progressively.
-4. Choose the root cause and check your reasoning.
-5. Review the safer implementation.
+A real PHP + SQLite application with intentionally vulnerable forms and database-backed exercises:
 
-Progress is stored in your browser's localStorage.
+- SQL injection in a demo login query
+- Stored XSS in a comments board
+- IDOR / broken object-level authorization in a profile viewer
+
+The range is deliberately vulnerable and is isolated to localhost with Docker. It uses fictional records only.
+
+See [range/README.md](range/README.md) for requirements, startup, and reset instructions.
 
 ## Safety
 
-All examples are fictional and intended for local education. Only test systems you own or have explicit permission to assess. Vulnerable snippets are demonstrations, not production code.
+Do not deploy the vulnerable range, expose it to a LAN, or test these techniques against systems you do not own or have explicit permission to assess. Keep the vulnerable app inside its local Docker sandbox.
 
-## Structure
+## Project structure
 
-- `index.html` - app shell
-- `styles.css` - responsive interface
-- `app.js` - lessons, hints, quiz logic, and progress tracking
-
-## License
-
-MIT
+- `index.html`, `styles.css`, `app.js` - guided curriculum
+- `range/` - isolated PHP + SQLite injection range
