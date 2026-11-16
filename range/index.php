@@ -92,9 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = (string)($_POST['password'] ?? '');
 
         // VULNERABLE DEMO: untrusted input is concatenated into SQL.
-        $sql = "SELECT id, username, role FROM users
-                WHERE username = '$username' AND password = '$password'
-                LIMIT 1";
+        $sql = "SELECT id, username, role FROM users WHERE username = '$username' AND password = '$password' LIMIT 1";
 
         try {
             $loginResult = $pdo->query($sql)->fetch() ?: null;
@@ -150,12 +148,12 @@ $hints = [
     'sqli' => [
         'Notice that the username and password values are placed directly inside single quotes in the SQL string.',
         'The database parses the combined string as SQL syntax. A comment marker can make the rest of a statement irrelevant.',
-        'For this local form, test a boolean condition in the username field and a harmless filler in the password field. Keep the experiment inside this training app.'
+        'In the username field, try: ' OR 1=1 -- x . Put any filler in the password field. This only selects a fictional row in this isolated demo database.'
     ],
     'xss' => [
         'The submitted comment is stored as data. The important question is how it is rendered back into the page.',
         'Find the output line in the comments loop. Is the comment escaped with htmlspecialchars(), or interpreted as HTML?',
-        'For a harmless local proof, use a small browser alert payload. It should only display a dialog in this local lab.'
+        'For a harmless local proof, submit this comment: <svg onload=alert('Stored XSS')>. It should only display a browser dialog in this local lab.'
     ],
     'idor' => [
         'The demo session is Nadia Student, user ID 2, and her own profile record is ID 2.',
