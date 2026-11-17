@@ -40,9 +40,9 @@ class ArticleController extends Controller
         $data['slug'] = Str::slug($data['title']).'-'.Str::lower(Str::random(5));
         $data['published_at'] = ($data['status'] ?? 'draft') === 'published' ? now() : null;
 
-        $article = Article::create($data);
+        Article::create($data);
 
-        return redirect()->route('articles.index')->with('success', 'Article created.');
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil dibuat.');
     }
 
     public function edit(Article $article): View
@@ -74,7 +74,7 @@ class ArticleController extends Controller
         }
         $article->save();
 
-        return redirect()->route('articles.index')->with('success', 'Article updated.');
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil diperbarui.');
     }
 
     public function destroy(Article $article): RedirectResponse
@@ -82,6 +82,6 @@ class ArticleController extends Controller
         // VULNERABLE LAB: missing ownership/policy enforcement on delete.
         $article->delete();
 
-        return redirect()->route('articles.index')->with('success', 'Article deleted.');
+        return redirect()->route('articles.index')->with('success', 'Artikel berhasil dihapus.');
     }
 }

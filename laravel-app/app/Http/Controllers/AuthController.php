@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
-                'email' => 'Those credentials do not match our records.',
+                'email' => 'Email atau kata sandi tidak sesuai dengan data kami.',
             ]);
         }
 
@@ -58,7 +58,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard')->with('success', 'Welcome to NusaBoard.');
+        return redirect()->route('dashboard')->with('success', 'Selamat datang di NusaBoard.');
     }
 
     public function logout(Request $request): RedirectResponse

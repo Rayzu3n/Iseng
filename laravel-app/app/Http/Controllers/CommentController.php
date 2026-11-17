@@ -23,6 +23,6 @@ class CommentController extends Controller
             'body' => $data['body'],
         ]);
 
-        return redirect()->route('articles.show', $article)->with('success', 'Comment posted.');
+        return redirect()->route('articles.show', $article)->with('success', 'Komentar berhasil dikirim.');
     }
 }

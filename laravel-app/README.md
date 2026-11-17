@@ -1,116 +1,126 @@
 # NusaBoard
 
-NusaBoard is a full Laravel 13 community publishing application used as a local web-security learning environment. It has real routes, controllers, Eloquent models, migrations, authentication, authorization concepts, Blade views, and seeded data.
+NusaBoard adalah aplikasi publikasi komunitas berbasis Laravel 13 yang digunakan sebagai lingkungan belajar keamanan web secara lokal. Aplikasi ini memiliki autentikasi, database, pengelolaan artikel, komentar, halaman administrasi, dan beberapa kerentanan yang sengaja ditanam untuk latihan.
 
-> **Training-only warning:** several features intentionally contain vulnerable code. Keep this app on your own machine, use fictional data, and never deploy it publicly or expose it to a network.
+> **Peringatan:** aplikasi ini memang mengandung kode yang rentan. Jalankan hanya di komputer sendiri dengan data fiktif. Jangan deploy aplikasi ini ke hosting publik dan jangan membukanya ke jaringan luar.
 
-## Stack
+## Teknologi
 
 - Laravel 13
 - PHP 8.3+
-- MariaDB / MySQL (default) or SQLite after configuring the connection
-- Blade templates
-- Plain CSS (no frontend build step)
+- MariaDB / MySQL
+- Blade
+- CSS biasa, tanpa proses build frontend
+- PHPUnit
 
-## Features
+## Fitur
 
-- Registration, login, logout, and session handling
-- Member dashboard with content statistics
-- Article create, edit, publish, feature, and delete workflows
-- Public article detail pages and comments
-- Search and category browsing
-- Admin overview and user directory
-- Seed accounts, categories, published articles, drafts, and comments
-- Security-lab notes beside deliberately vulnerable features
+- Registrasi, login, logout, dan sesi pengguna
+- Dasbor anggota dengan ringkasan konten
+- Pembuatan, pengeditan, penerbitan, dan penghapusan artikel
+- Halaman detail artikel dan komentar
+- Pencarian artikel dan kategori
+- Ringkasan administrasi dan direktori pengguna
+- Akun demo, kategori, artikel, draf, dan komentar dari seeder
+- Catatan latihan keamanan pada bagian aplikasi yang sengaja dibuat rentan
+- Antarmuka Bahasa Indonesia
 
-## Requirements
+## Persyaratan
 
-- PHP 8.3 or newer
+- PHP 8.3 atau lebih baru
 - Composer 2
-- MariaDB / MySQL with the PHP \`pdo_mysql\` extension
-- PHP extensions required by Laravel, including \`mbstring\`, \`openssl\`, \`pdo\`, \`tokenizer\`, \`xml\`, \`ctype\`, \`curl\`, \`fileinfo\`, and \`json\`
+- MariaDB atau MySQL
+- Ekstensi PHP yang diperlukan Laravel, termasuk pdo_mysql, mbstring, openssl, pdo, tokenizer, xml, ctype, curl, fileinfo, dan json
 
-## Install on a local machine
+## Instalasi lokal
 
-From this directory:
+Jalankan perintah dari folder proyek ini.
 
-\`\`\`bash
-cp .env.example .env
-\`\`\`
+1. Pasang dependensi:
 
-Create the local database:
-
-\`\`\`sql
-CREATE DATABASE nusaboard_lab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-\`\`\`
-
-Update \`DB_USERNAME\` and \`DB_PASSWORD\` in \`.env\` for your local MariaDB account, then run:
-
-\`\`\`bash
+~~~bash
 composer install
+~~~
+
+2. Buat file konfigurasi jika belum ada:
+
+~~~bash
+cp .env.example .env
+~~~
+
+Jangan jalankan perintah tersebut jika kamu sudah memiliki file .env yang berisi konfigurasi lokal sendiri.
+
+3. Buat database MariaDB:
+
+~~~sql
+CREATE DATABASE nusaboard_lab CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+~~~
+
+4. Periksa pengaturan di file .env. Sesuaikan nama pengguna dan kata sandi database. Pastikan bahasa menggunakan APP_LOCALE=id dan APP_FALLBACK_LOCALE=id.
+
+5. Buat application key, siapkan tabel, dan isi data demo:
+
+~~~bash
 php artisan key:generate
 php artisan migrate:fresh --seed
+php artisan config:clear
+~~~
+
+6. Jalankan server lokal:
+
+~~~bash
 php artisan serve --host=127.0.0.1 --port=8000
-\`\`\`
+~~~
 
-Open **http://127.0.0.1:8000**.
+Buka http://127.0.0.1:8000 di browser.
 
-No Node.js or npm build is required. The app uses a local stylesheet.
+Tidak diperlukan Node.js atau npm untuk menjalankan antarmuka.
 
-## Demo accounts
+## Akun demo
 
-All seeded accounts use the local-only password \`password\`.
+Semua akun demo menggunakan kata sandi lokal password.
 
-| Role | Email |
+| Peran | Email |
 |---|---|
-| Admin | \`admin@nusaboard.test\` |
-| Editor | \`editor@nusaboard.test\` |
-| Member | \`member@nusaboard.test\` |
+| Admin | admin@nusaboard.test |
+| Editor | editor@nusaboard.test |
+| Anggota | member@nusaboard.test |
 
-Registration creates a member account.
+Registrasi baru otomatis membuat akun dengan peran anggota.
 
-## Security exercises
+## Latihan keamanan
 
-The vulnerable behavior is intentionally implemented in normal application flows, not in a separate toy page.
-
-| Exercise | Where to inspect | What to learn |
+| Materi | Lokasi untuk diperiksa | Fokus pembelajaran |
 |---|---|---|
-| SQL injection | \`HomeController.php\` public search | Raw interpolation vs parameter binding |
-| Stored XSS | \`CommentController.php\` + \`articles/show.blade.php\` | Stored input and escaped output |
-| IDOR / BOLA | \`ArticleController.php\` edit, update, delete | Ownership checks and policies |
-| Mass assignment | \`Article.php\` + \`ArticleController.php\` | Explicit validated fields and guarded model attributes |
-| Role authorization | \`AdminController.php\` + \`/admin\` route | Authentication vs authorization |
+| SQL Injection | Pencarian publik di HomeController.php | Interpolasi SQL mentah dan parameter binding |
+| Stored XSS | CommentController.php dan articles/show.blade.php | Input tersimpan dan output escaping |
+| IDOR / BOLA | Edit, update, dan delete di ArticleController.php | Pemeriksaan kepemilikan dan policy |
+| Mass Assignment | Article.php dan ArticleController.php | Validasi atribut dan perlindungan model |
+| Otorisasi peran | AdminController.php dan rute /admin | Autentikasi berbeda dari otorisasi |
 
-Each page includes a lab note. Source comments marked \`VULNERABLE LAB\` identify intentionally unsafe lines.
+Setiap halaman terkait memiliki catatan lab. Komentar kode yang memuat tulisan VULNERABLE LAB menandai bagian yang sengaja dibuat tidak aman.
 
-### Suggested learning flow
+## Menjalankan pengujian
 
-1. Register a member account and inspect the dashboard.
-2. Search the public article list. Inspect the raw SQL construction in the home controller.
-3. Post a normal comment, then inspect the comment rendering path and compare it with normal escaped Blade output.
-4. Create an article and review the controller's request handling and model fillable fields.
-5. Open your own article edit screen, then inspect how the route resolves other article IDs and what authorization check is missing.
-6. Open \`/admin\` directly while signed in as a member. Compare navigation visibility with server-side route middleware.
-7. For each issue, write down the root cause, impact, and a secure Laravel fix before changing the code.
-
-## Running tests
-
-\`\`\`bash
+~~~bash
 php artisan test
-\`\`\`
+~~~
 
-The included smoke tests cover the login page, registration page, and guest dashboard redirect.
+## Mengembalikan data demo
 
-## Restore seed data
+Perintah berikut menghapus tabel lokal, membuat ulang struktur database, lalu mengisi data contoh:
 
-The following command drops and recreates the local tables, then restores fictional demo data:
-
-\`\`\`bash
+~~~bash
 php artisan migrate:fresh --seed
-\`\`\`
+~~~
 
-This deletes changes made to the local training database.
+Perintah ini menghapus perubahan pada database latihan lokal.
 
-## Production warning
+## Dokumentasi
 
-Do not use this code as a production starter. Remove the intentionally vulnerable search, output rendering, mass assignment, record update/delete, and admin access patterns before deployment. Add authorization policies, validated allowlists, parameterized queries, escaped output, and security regression tests.
+- Panduan Penggunaan: PANDUAN.md. Berisi langkah menjalankan website, menggunakan fitur, akun demo, dan alur belajar.
+- Repositori proyek: https://github.com/Rayzu3n/Iseng
+
+## Catatan sebelum produksi
+
+Jangan gunakan kode ini sebagai fondasi aplikasi produksi. Sebelum deployment, perbaiki pencarian SQL, rendering komentar, mass assignment, otorisasi edit dan hapus, serta akses halaman admin. Tambahkan policy, query berparameter, output escaping, validasi allowlist, dan pengujian keamanan regresi.

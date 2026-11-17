@@ -1,20 +1,25 @@
 # NusaBoard Security Lab
 
-A Laravel community publishing application with real authentication, database-backed content, comments, an admin area, and intentionally vulnerable workflows for local security education.
+NusaBoard adalah aplikasi publikasi komunitas berbasis Laravel untuk latihan pengembangan web dan pemeriksaan keamanan aplikasi.
 
-## Main project
+## Proyek utama
 
-The full Laravel 13 application is in the \`laravel-app/\` directory. Start with [the Laravel setup guide](laravel-app/README.md).
+Aplikasi Laravel lengkap berada di folder **laravel-app/**.
 
-Features include:
-- Registration, login, member dashboard, and role labels
-- Article CRUD, categories, publishing status, and featured content
-- Public search, article details, and stored comments
-- Admin overview and user directory
-- Deliberate SQL injection, stored XSS, IDOR, mass assignment, and role authorization mistakes
+- [Panduan instalasi dan pengembangan](laravel-app/README.md)
+- [Panduan penggunaan dan latihan](laravel-app/PANDUAN.md)
 
-## Local-only warning
+## Fitur
 
-This repository contains intentionally vulnerable code. Run it only on your own machine with fictional data. Do not deploy it to a public host or expose it to a network.
+- Registrasi, login, dasbor anggota, dan peran akun
+- Pengelolaan artikel, kategori, status publikasi, dan artikel unggulan
+- Pencarian publik, detail artikel, dan komentar
+- Ringkasan administrasi dan direktori pengguna
+- Antarmuka Bahasa Indonesia
+- Materi latihan SQL Injection, Stored XSS, IDOR, Mass Assignment, dan otorisasi peran
 
-The earlier static curriculum and small PHP range are retained as supplementary material. The Laravel app is the main full-application exercise.
+## Peringatan penggunaan
+
+Repositori ini berisi kode yang sengaja dibuat rentan untuk pembelajaran keamanan web. Jalankan hanya di komputer sendiri, gunakan data fiktif, dan jangan deploy versi latihan ini ke hosting publik atau membuka aksesnya ke jaringan luar.
+
+Materi kurikulum statis dan proyek PHP kecil dari latihan sebelumnya tetap disimpan sebagai materi tambahan. Aplikasi Laravel di folder laravel-app merupakan proyek utama.

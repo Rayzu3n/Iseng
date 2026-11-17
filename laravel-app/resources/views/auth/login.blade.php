@@ -1,28 +1,24 @@
 @extends('layouts.app')
-@section('title', 'Sign in')
+@section('title', 'Masuk')
 @section('content')
 <section class="auth-wrap">
-    <div class="auth-aside">
-        <div class="eyebrow">WELCOME BACK</div>
-        <h1>Your next good read is waiting.</h1>
-        <p>Sign in to manage your stories, join conversations, and keep your community notes in one place.</p>
-        <div class="auth-quote">“Good ideas grow when they are shared.”</div>
+    <div class="auth-aside"><div class="eyebrow">SELAMAT DATANG KEMBALI</div>
+        <h1>Ada bacaan menarik yang menunggumu.</h1>
+        <p>Masuk untuk mengelola tulisan, ikut berdiskusi, dan menyimpan catatan komunitasmu di satu tempat.</p>
+        <div class="auth-quote">“Ide yang baik berkembang saat dibagikan.”</div>
     </div>
-    <div class="form-card">
-        <div class="eyebrow">YOUR ACCOUNT</div>
-        <h2>Sign in to NusaBoard</h2>
-        <p class="muted">Use your community account to continue.</p>
-        <form method="POST" action="{{ route('login.store') }}">
-            @csrf
-            <label class="field-label" for="email">Email address</label>
+    <div class="form-card"><div class="eyebrow">AKUN KAMU</div><h2>Masuk ke NusaBoard</h2>
+        <p class="muted">Gunakan akun komunitas untuk melanjutkan.</p>
+        <form method="POST" action="{{ route('login.store') }}">@csrf
+            <label class="field-label" for="email">Alamat email</label>
             <input class="input" id="email" name="email" type="email" value="{{ old('email') }}" autocomplete="email" required autofocus>
-            <label class="field-label" for="password">Password</label>
+            <label class="field-label" for="password">Kata sandi</label>
             <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
-            <label class="check-row"><input type="checkbox" name="remember"> Remember me</label>
-            <button class="button button-primary button-wide" type="submit">Sign in ↗</button>
+            <label class="check-row"><input type="checkbox" name="remember"> Ingat saya</label>
+            <button class="button button-primary button-wide" type="submit">Masuk ↗</button>
         </form>
-        <p class="form-foot">New here? <a href="{{ route('register') }}">Create an account</a></p>
-        <details class="demo-accounts"><summary>Local demo accounts</summary><p>Admin, editor, and member accounts use the password <code>password</code>. See the README for email addresses.</p></details>
+        <p class="form-foot">Belum punya akun? <a href="{{ route('register') }}">Buat akun</a></p>
+        <details class="demo-accounts"><summary>Akun demo lokal</summary><p>Akun admin, editor, dan anggota menggunakan kata sandi password. Lihat PANDUAN.md untuk alamat emailnya.</p></details>
     </div>
 </section>
 @endsection

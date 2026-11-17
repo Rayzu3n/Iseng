@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,44 +14,40 @@
 <header class="site-header">
     <div class="header-inner">
         <a class="brand" href="{{ route('home') }}"><span class="brand-mark">N</span><span>Nusa<span class="brand-accent">Board</span></span></a>
-        <nav class="main-nav">
-            <a href="{{ route('home') }}">Explore</a>
+        <nav class="main-nav" aria-label="Navigasi utama">
+            <a href="{{ route('home') }}">Jelajahi</a>
             @auth
-                <a href="{{ route('dashboard') }}">Dashboard</a>
-                <a href="{{ route('articles.index') }}">My articles</a>
+                <a href="{{ route('dashboard') }}">Dasbor</a>
+                <a href="{{ route('articles.index') }}">Artikel Saya</a>
                 @if(auth()->user()->role === 'admin')
-                    <a href="{{ route('admin.index') }}">Administration</a>
+                    <a href="{{ route('admin.index') }}">Administrasi</a>
                 @endif
             @endauth
         </nav>
         <div class="header-actions">
             @auth
                 <span class="user-chip"><span class="avatar">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>{{ auth()->user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}">@csrf<button class="button button-quiet" type="submit">Sign out</button></form>
+                <form method="POST" action="{{ route('logout') }}">@csrf<button class="button button-quiet" type="submit">Keluar</button></form>
             @else
-                <a class="button button-quiet" href="{{ route('login') }}">Sign in</a>
-                <a class="button button-primary" href="{{ route('register') }}">Join community</a>
+                <a class="button button-quiet" href="{{ route('login') }}">Masuk</a>
+                <a class="button button-primary" href="{{ route('register') }}">Gabung Komunitas</a>
             @endauth
         </div>
     </div>
 </header>
-
 <main class="page-shell">
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+    @if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
     @if($errors->any())
         <div class="alert alert-error">
-            <strong>Something needs attention.</strong>
+            <strong>Ada beberapa hal yang perlu diperiksa.</strong>
             <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
         </div>
     @endif
     @yield('content')
 </main>
-
 <footer class="site-footer">
-    <div><strong>NusaBoard</strong><span> · A community publishing playground</span></div>
-    <span>LOCAL SECURITY TRAINING ENVIRONMENT</span>
+    <div><strong>NusaBoard</strong><span> · Ruang berbagi tulisan komunitas</span></div>
+    <span>LINGKUNGAN LATIHAN KEAMANAN LOKAL</span>
 </footer>
 </body>
 </html>
