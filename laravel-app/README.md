@@ -118,6 +118,9 @@ Perintah ini menghapus perubahan pada database latihan lokal.
 
 ## Dokumentasi
 
+- [Manual Red Team](RED-TEAM-MANUAL.md): misi reconnaissance, pengujian kerentanan, pembuktian dampak, dan pelaporan dalam lab lokal.
+- [Panduan Penggunaan](PANDUAN.md): instalasi, halaman website, dan pemecahan masalah.
+
 - Panduan Penggunaan: PANDUAN.md. Berisi langkah menjalankan website, menggunakan fitur, akun demo, dan alur belajar.
 - Repositori proyek: https://github.com/Rayzu3n/Iseng
 

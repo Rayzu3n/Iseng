@@ -7,7 +7,8 @@ NusaBoard adalah aplikasi publikasi komunitas berbasis Laravel untuk latihan pen
 Aplikasi Laravel lengkap berada di folder **laravel-app/**.
 
 - [Panduan instalasi dan pengembangan](laravel-app/README.md)
-- [Panduan penggunaan dan latihan](laravel-app/PANDUAN.md)
+- [Panduan penggunaan](laravel-app/PANDUAN.md)
+- [Manual Red Team / Pentest](laravel-app/RED-TEAM-MANUAL.md)
 
 ## Fitur
 

@@ -6,7 +6,7 @@ Panduan ini menjelaskan cara menjalankan NusaBoard, mencoba fitur website, memak
 
 NusaBoard adalah website publikasi komunitas. Pengguna dapat membaca artikel, membuat akun, menulis artikel, mengelola tulisan, dan memberikan komentar.
 
-Website ini juga merupakan lab belajar keamanan aplikasi Laravel. Beberapa bagian sengaja memiliki kekurangan keamanan agar kamu dapat membaca kode sumber, menemukan penyebabnya, lalu mempelajari perbaikannya.
+Website ini juga merupakan lab belajar keamanan aplikasi Laravel. Beberapa bagian sengaja memiliki kekurangan keamanan. Panduan penggunaan menjelaskan cara menjalankan aplikasi, sedangkan [RED-TEAM-MANUAL.md](RED-TEAM-MANUAL.md) berisi misi untuk memetakan aplikasi, menguji celah, membuktikan dampak, dan membuat laporan sebagai Red Team.
 
 **Penting:** NusaBoard versi latihan hanya boleh dijalankan di komputer sendiri melalui alamat 127.0.0.1. Jangan deploy versi ini ke server publik, jangan gunakan data asli, dan jangan memberikan akses ke orang lain melalui jaringan.
 
