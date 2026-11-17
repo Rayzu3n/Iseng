@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $admin = User::updateOrCreate(
             ['email' => 'admin@nusaboard.test'],
-            ['name' => 'Nusa Admin', 'password' => Hash::make('password'), 'role' => 'admin']
+            ['name' => 'Admin Nusa', 'password' => Hash::make('password'), 'role' => 'admin']
         );
 
         $editor = User::updateOrCreate(
@@ -26,49 +26,49 @@ class DatabaseSeeder extends Seeder
 
         $member = User::updateOrCreate(
             ['email' => 'member@nusaboard.test'],
-            ['name' => 'Raka Member', 'password' => Hash::make('password'), 'role' => 'member']
+            ['name' => 'Raka Anggota', 'password' => Hash::make('password'), 'role' => 'member']
         );
 
         $tech = Category::updateOrCreate(
             ['slug' => 'technology'],
-            ['name' => 'Technology', 'description' => 'Software, devices, and the digital world.']
+            ['name' => 'Teknologi', 'description' => 'Perangkat lunak, perangkat digital, dan dunia teknologi.']
         );
         $games = Category::updateOrCreate(
             ['slug' => 'gaming'],
-            ['name' => 'Gaming', 'description' => 'Games, communities, and interactive media.']
+            ['name' => 'Game', 'description' => 'Permainan, komunitas, dan media interaktif.']
         );
         $community = Category::updateOrCreate(
             ['slug' => 'community'],
-            ['name' => 'Community', 'description' => 'Stories and ideas from the community.']
+            ['name' => 'Komunitas', 'description' => 'Cerita dan gagasan dari anggota komunitas.']
         );
 
         $articles = [
             [
                 'user_id' => $editor->id, 'category_id' => $tech->id,
-                'title' => 'Why small projects teach big lessons',
-                'excerpt' => 'A practical look at learning through projects, iteration, and careful review.',
-                'body' => "The best way to understand a system is to build one, inspect its behavior, and improve it. Small projects create room to experiment without losing sight of the fundamentals.",
+                'title' => 'Pelajaran besar dari proyek kecil',
+                'excerpt' => 'Cara belajar melalui proyek, proses pengembangan bertahap, dan evaluasi yang cermat.',
+                'body' => "Cara terbaik memahami sebuah sistem adalah dengan membangunnya, memeriksa perilakunya, lalu memperbaikinya. Proyek kecil memberi ruang untuk bereksperimen tanpa melupakan dasar-dasarnya.",
                 'status' => 'published', 'is_featured' => true,
             ],
             [
                 'user_id' => $admin->id, 'category_id' => $games->id,
-                'title' => 'Building healthier gaming communities',
-                'excerpt' => 'Good community spaces need thoughtful rules, moderation, and trust.',
-                'body' => "A community is more than its software. Clear expectations, useful moderation tools, and respectful discussion help people enjoy the space together.",
+                'title' => 'Membangun komunitas game yang sehat',
+                'excerpt' => 'Komunitas yang baik membutuhkan aturan yang jelas, moderasi, dan rasa saling percaya.',
+                'body' => "Komunitas bukan hanya tentang perangkat lunaknya. Harapan yang jelas, alat moderasi yang berguna, dan diskusi yang saling menghormati membantu semua orang menikmati ruang bersama.",
                 'status' => 'published', 'is_featured' => true,
             ],
             [
                 'user_id' => $member->id, 'category_id' => $community->id,
-                'title' => 'My first weekend learning Laravel',
-                'excerpt' => 'Notes from setting up routes, models, migrations, and Blade views.',
-                'body' => "Starting with the request lifecycle made the framework easier to understand. Routes connect requests to controllers, models represent data, and views shape the response.",
+                'title' => 'Akhir pekan pertama belajar Laravel',
+                'excerpt' => 'Catatan saat mempelajari route, model, migration, dan Blade view.',
+                'body' => "Memulai dari siklus request membuat framework lebih mudah dipahami. Route menghubungkan request dengan controller, model merepresentasikan data, dan view membentuk respons.",
                 'status' => 'published', 'is_featured' => false,
             ],
             [
                 'user_id' => $editor->id, 'category_id' => $tech->id,
-                'title' => 'A draft about secure defaults',
-                'excerpt' => 'This is intentionally unpublished sample content for the local lab.',
-                'body' => 'Draft content is not supposed to appear in public search results.',
+                'title' => 'Draf tentang keamanan sejak awal',
+                'excerpt' => 'Ini adalah konten contoh yang sengaja belum diterbitkan untuk lab lokal.',
+                'body' => 'Konten draf seharusnya tidak muncul pada hasil pencarian publik.',
                 'status' => 'draft', 'is_featured' => false,
             ],
         ];
@@ -81,17 +81,17 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        $firstArticle = Article::where('slug', 'why-small-projects-teach-big-lessons')->first();
+        $firstArticle = Article::where('slug', 'pelajaran-besar-dari-proyek-kecil')->first();
         if ($firstArticle && $firstArticle->comments()->doesntExist()) {
             Comment::create([
                 'article_id' => $firstArticle->id,
                 'user_id' => $member->id,
-                'body' => 'A useful reminder to keep projects small and finishable.',
+                'body' => 'Pengingat yang bagus untuk membuat proyek tetap kecil dan realistis untuk diselesaikan.',
             ]);
             Comment::create([
                 'article_id' => $firstArticle->id,
                 'user_id' => $editor->id,
-                'body' => 'Reviewing the result is just as important as writing the first version.',
+                'body' => 'Meninjau hasil sama pentingnya dengan menulis versi pertama.',
             ]);
         }
     }
