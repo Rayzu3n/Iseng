@@ -1,36 +1,20 @@
-# SecureLab
+# NusaBoard Security Lab
 
-A web security learning project with two parts:
+A Laravel community publishing application with real authentication, database-backed content, comments, an admin area, and intentionally vulnerable workflows for local security education.
 
-## 1. Guided curriculum
+## Main project
 
-A lightweight static site with six lessons, progressive hints, quizzes, and secure-code explanations.
+The full Laravel 13 application is in the \`laravel-app/\` directory. Start with [the Laravel setup guide](laravel-app/README.md).
 
-Open `index.html` directly, or run:
+Features include:
+- Registration, login, member dashboard, and role labels
+- Article CRUD, categories, publishing status, and featured content
+- Public search, article details, and stored comments
+- Admin overview and user directory
+- Deliberate SQL injection, stored XSS, IDOR, mass assignment, and role authorization mistakes
 
-```bash
-python3 -m http.server 8000
-```
+## Local-only warning
 
-Then visit http://localhost:8000.
+This repository contains intentionally vulnerable code. Run it only on your own machine with fictional data. Do not deploy it to a public host or expose it to a network.
 
-## 2. Hands-on Injection Range
-
-A real PHP + SQLite application with intentionally vulnerable forms and database-backed exercises:
-
-- SQL injection in a demo login query
-- Stored XSS in a comments board
-- IDOR / broken object-level authorization in a profile viewer
-
-The range is deliberately vulnerable and is isolated to localhost with Docker. It uses fictional records only.
-
-See [range/README.md](range/README.md) for requirements, startup, and reset instructions.
-
-## Safety
-
-Do not deploy the vulnerable range, expose it to a LAN, or test these techniques against systems you do not own or have explicit permission to assess. Keep the vulnerable app inside its local Docker sandbox.
-
-## Project structure
-
-- `index.html`, `styles.css`, `app.js` - guided curriculum
-- `range/` - isolated PHP + SQLite injection range
+The earlier static curriculum and small PHP range are retained as supplementary material. The Laravel app is the main full-application exercise.
